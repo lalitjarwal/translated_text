@@ -1,6 +1,6 @@
 # translated_text
 
-A wrapper to the [translator: ^0.1.5](https://pub.dev/packages/translator) package.
+A wrapper on the [translator: ^0.1.5](https://pub.dev/packages/translator) package.
 
 ## *Note 
 - It can be used to internationilize your app but not recommended for production. 
