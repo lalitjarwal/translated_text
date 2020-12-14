@@ -13,6 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  translated_text: ^0.0.1
 
 dev_dependencies:
   flutter_test:

@@ -24,7 +24,7 @@ class JumpingDotsProgressIndicator extends StatefulWidget {
   /// number dots required to animate
   final int numberOfDots;
 
-  /// FontSize per dot character 
+  /// FontSize per dot character
   final double fontSize;
 
   /// Spacing between the dots

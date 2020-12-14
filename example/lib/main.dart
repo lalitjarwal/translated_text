@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:translated_text/translated_text.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Container(
-            child: TranslatedText('I Love Flutter',to:'hi'),
+            child: TranslatedText("I Love 'Flutter'.",to:'hi',),
           ),
         ),
       ),

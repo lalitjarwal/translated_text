@@ -8,15 +8,16 @@ class TranslatedText extends StatefulWidget {
   /// The string passed will translated into given language as
   /// [to:] parameter. Default is English ['en'].
   /// [from:] parameter specifies the input language
-  /// can be used in localization but not recommended
+  /// can be used in localization but not recommended.
 
-  /// String passed to [TranslatedText]
+
+  /// String passed to [TranslatedText].
   final String data;
 
-  /// language in which string will be translated
+  /// language in which string will be translated.
   final String to;
 
-  /// language from the string will be translated
+  /// language from the string will be translated.
   final String from;
 
   /// An immutable style describing how to format and paint text.
@@ -66,11 +67,11 @@ class TranslatedText extends StatefulWidget {
     this.maxLines,
     this.semanticsLabel,
     this.softWrap,
+    this.placeholder,
     this.strutStyle,
     this.locale,
     this.textWidthBasis,
   })  : assert(data != null),
-        placeholder = JumpingDotsProgressIndicator(),
         super(key: key);
 
   @override
