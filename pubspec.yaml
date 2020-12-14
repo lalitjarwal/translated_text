@@ -1,8 +1,8 @@
 name: translated_text
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+
+homepage: https://github.com/lalitjarwal/translated_text
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

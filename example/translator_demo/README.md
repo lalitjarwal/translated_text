@@ -1,4 +1,4 @@
-# translation_demo
+# translator_demo
 
 A new Flutter project.
 

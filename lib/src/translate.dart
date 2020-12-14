@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:translated_text/src/jumping_dots.dart';
 import 'package:translator/translator.dart';
 
+// ignore: must_be_immutable
 class TranslatedText extends StatefulWidget {
   /// A Stateful widget just like original [Text] widget.
-  /// The string passed will translated into given language as 
+  /// The string passed will translated into given language as
   /// [to:] parameter. Default is English ['en'].
   /// [from:] parameter specifies the input language
   /// can be used in localization but not recommended
-  
+
   /// String passed to [TranslatedText]
   final String data;
 
-  /// language in which string will be translated 
+  /// language in which string will be translated
   final String to;
 
   /// language from the string will be translated
@@ -35,6 +36,9 @@ class TranslatedText extends StatefulWidget {
 
   /// How overflowing text should be handled.
   final TextOverflow textOverflow;
+
+  /// A placeholder Widget to show while string is bieng translated
+  Widget placeholder;
 
   final bool softWrap;
 
@@ -65,20 +69,23 @@ class TranslatedText extends StatefulWidget {
     this.strutStyle,
     this.locale,
     this.textWidthBasis,
-  }) : super(key: key);
+  })  : assert(data != null),
+        placeholder = JumpingDotsProgressIndicator(),
+        super(key: key);
 
   @override
   _TranslatedTextState createState() => _TranslatedTextState();
 }
 
 class _TranslatedTextState extends State<TranslatedText> {
-
   /// Object of [GoogleTranlator()]
   final translator = GoogleTranslator();
-  
+
   String translation;
   @override
   void initState() {
+    if (widget.placeholder == null)
+      widget.placeholder = JumpingDotsProgressIndicator();
     translator
         .translate(widget.data, to: widget.to, from: widget.from)
         .then((value) {
@@ -108,6 +115,6 @@ class _TranslatedTextState extends State<TranslatedText> {
             locale: widget.locale,
             maxLines: widget.maxLines,
           )
-        : JumpingDotsProgressIndicator(fontSize: 16,color: Colors.black);
+        : widget.placeholder;
   }
 }

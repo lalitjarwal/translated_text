@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Container(
-            child: Text('Hello World'),
+            child: TranslatedText('I Love Flutter',to:'hi'),
           ),
         ),
       ),

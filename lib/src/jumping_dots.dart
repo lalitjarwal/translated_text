@@ -40,45 +40,26 @@ class JumpingDotsProgressIndicator extends StatefulWidget {
   JumpingDotsProgressIndicator(
       {this.numberOfDots = 3,
       this.fontSize = 10.0,
-      this.color = Colors.black,
+      this.color = const Color(0xff000000),
       this.dotSpacing = 0.0,
       this.milliseconds = 250})
       : endTweenValue = fontSize / 4;
 
   @override
   _JumpingDotsProgressIndicatorState createState() =>
-      _JumpingDotsProgressIndicatorState(
-        numberOfDots: numberOfDots,
-        fontSize: fontSize,
-        color: color,
-        dotSpacing: dotSpacing,
-        milliseconds: milliseconds,
-      );
+      _JumpingDotsProgressIndicatorState();
 }
 
 class _JumpingDotsProgressIndicatorState
     extends State<JumpingDotsProgressIndicator> with TickerProviderStateMixin {
-  int numberOfDots;
-  int milliseconds;
-  double fontSize;
-  double dotSpacing;
-  Color color;
   final List<AnimationController> controllers = <AnimationController>[];
   final List<Animation<double>> animations = <Animation<double>>[];
   final List<Widget> _widgets = <Widget>[];
 
-  _JumpingDotsProgressIndicatorState({
-    this.numberOfDots,
-    this.fontSize,
-    this.color,
-    this.dotSpacing,
-    this.milliseconds,
-  });
-
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < numberOfDots; i++) {
+    for (var i = 0; i < widget.numberOfDots; i++) {
       _addAnimationControllers();
       _buildAnimations(i);
       _addListOfDots(i);
@@ -89,16 +70,16 @@ class _JumpingDotsProgressIndicatorState
 
   void _addAnimationControllers() {
     controllers.add(AnimationController(
-        duration: Duration(milliseconds: milliseconds), vsync: this));
+        duration: Duration(milliseconds: widget.milliseconds), vsync: this));
   }
 
   void _addListOfDots(int index) {
     _widgets.add(Padding(
-      padding: EdgeInsets.only(right: dotSpacing),
+      padding: EdgeInsets.only(right: widget.dotSpacing),
       child: _JumpingDot(
         animation: animations[index],
-        fontSize: fontSize,
-        color: color,
+        fontSize: widget.fontSize,
+        color: widget.color,
       ),
     ));
   }
@@ -110,12 +91,12 @@ class _JumpingDotsProgressIndicatorState
               ..addStatusListener((AnimationStatus status) {
                 if (status == AnimationStatus.completed)
                   controllers[index].reverse();
-                if (index == numberOfDots - 1 &&
+                if (index == widget.numberOfDots - 1 &&
                     status == AnimationStatus.dismissed) {
                   controllers[0].forward();
                 }
                 if (animations[index].value > widget.endTweenValue / 2 &&
-                    index < numberOfDots - 1) {
+                    index < widget.numberOfDots - 1) {
                   controllers[index + 1].forward();
                 }
               }));
@@ -124,15 +105,15 @@ class _JumpingDotsProgressIndicatorState
   @override
   Widget build(BuildContext context) {
     return Row(
-       mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: _widgets,
-      );
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: _widgets,
+    );
   }
 
   @override
   void dispose() {
-    for (var i = 0; i < numberOfDots; i++) {
+    for (var i = 0; i < widget.numberOfDots; i++) {
       controllers[i].dispose();
     }
     super.dispose();
