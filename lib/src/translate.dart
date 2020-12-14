@@ -10,7 +10,6 @@ class TranslatedText extends StatefulWidget {
   /// [from:] parameter specifies the input language
   /// can be used in localization but not recommended.
 
-
   /// String passed to [TranslatedText].
   final String data;
 

@@ -2,10 +2,10 @@
 
 A wrapper on the [translator: ^0.1.5](https://pub.dev/packages/translator) package.
 
+A ```TranslatedText()``` widget that displays text to choosen translated language. 
+
 ## *Note 
 - It can be used to internationilize your app but not recommended for production. 
-
-A ```TranslatedText()``` widget that displays text to choosen translated language. 
 
 # Getting Started
 
